@@ -1,0 +1,64 @@
+.backdrop {
+  position: relative;
+  height: 100%; 
+  filter: blur(20px); 
+  background-size: cover; 
+  opacity: 0.4;
+}
+
+.main-content {
+    height: 100vh;
+}
+
+.movie-detail {
+  position: absolute;
+  bottom: 25%;
+  left: 10%;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .movie-detail {
+    position: absolute;
+    top: 10%;
+  }
+}
+
+.sub-info {
+  font-weight: 600;
+  color: white;
+}
+
+.recap {
+  margin-top: 1%;
+}
+
+// .movie-link:hover {
+//   cursor: pointer;
+//   border: 4px solid orangered;
+// }
+
+.movie-link {
+  border: 5px solid white;
+  display: inline-block;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.title {
+  text-align: left;
+  margin-top: 2px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.95em;
+  color: white;
+}
+
+.play-btn {
+  border: 1px white solid; 
+  width: 100%;
+  margin-top: 3px; 
+  color: white;
+  // background-image: linear-gradient( to right, #D73350, #FC6F69 );
+}

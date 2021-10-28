@@ -1,0 +1,48 @@
+<app-header></app-header>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="default" color="#fff" type="ball-beat">
+    <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<div class="main-content">
+    <div class="backdrop" style="background-image: url('{{thumbnail}}');">
+    </div>
+    <div class="row movie-detail">
+        <div class="box-detail col-10 col-md-3 col-lg-2">
+            <a href="" class="movie-link">
+                <img *ngIf="thumbnail  ; else noThumnail" src="{{thumbnail}}" alt="">
+            </a>
+
+            <button class="btn btn-danger"
+                style="border: 1px white solid; width: 100%; margin-top: 3px; background-image: linear-gradient( to right, #D73350, #FC6F69 );">PLAY</button>
+        </div>
+        <ng-template #noThumnail><a href="" class="">
+                <img src="../../assets/image/230x345.png" alt="">
+            </a></ng-template>
+        <div class="movie-info col-12 col-md-12 col-lg-9">
+            <div class="title">
+                <h1>{{movieData.title}} ({{movieData.release_date | date: 'yyyy'}})</h1>
+            </div>
+            <hr>
+            <div class="row movie-sub-info">
+                <div class="col-6 col-lg-2">
+                    <p class="sub-info">Budget</p>
+                    <p class="sub-info">Revenue</p>
+                    <p class="sub-info">Release date</p>
+                    <p class="sub-info">Rating</p>
+                    <p class="sub-info">Director</p>
+                </div>
+                <div class="col-6 col-lg-6">
+                    <p class="sub-info name-director">${{movieData.budget | number}}</p>
+                    <p class="sub-info time">${{movieData.revenue | number}}</p>
+                    <p class="sub-info release-date">{{movieData.release_date}}</p>
+                    <p class="sub-info cast">{{movieData.vote_average}}</p>
+                    <p class="sub-info cast">{{movieData.director_id}}</p>
+                </div>
+            </div>
+            <p class="recap" style="color: white; font-weight: 400; width: 90%;">{{movieData.overview}}</p>
+
+            <!-- <div class="metascore">
+                8.2/10
+            </div> -->
+        </div>
+    </div>
+</div>
