@@ -2,9 +2,11 @@ import { environment } from '../../environments/environment';
 
 export const SERVER = environment.serverUrl;
 
-export const SERVER_IMAGE_500 = 'http://image.tmdb.org/t/p/w500';
+export const SERVER_IMAGE_500 = 'https://image.tmdb.org/t/p/w500';
 
-export const SERVER_IMAGE_200 = 'http://image.tmdb.org/t/p/w200';
+export const SERVER_IMAGE_200 = 'https://image.tmdb.org/t/p/w200';
+
+export const SERVER_FACE_CAST = 'https://image.tmdb.org/t/p/w138_and_h175_face';
 
 export const SERVICE_CONFIG = {
 

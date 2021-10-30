@@ -3,16 +3,16 @@
     <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
 <div class="main-content">
-    <div class="backdrop" style="background-image: url('{{thumbnail}}');">
+    <div class="backdrop" style="background-image: url('{{cover}}');">
     </div>
     <div class="row movie-detail">
         <div class="box-detail col-10 col-md-3 col-lg-2">
-            <a href="" class="movie-link">
-                <img *ngIf="thumbnail  ; else noThumnail" src="{{thumbnail}}" alt="">
+            <a href="" class="movie-link" style="width: 100%;">
+                <img *ngIf="thumbnail  ; else noThumnail" src="{{thumbnail}}" alt="" style="width: 100%;">
             </a>
 
             <button class="btn btn-danger"
-                style="border: 1px white solid; width: 100%; margin-top: 3px; background-image: linear-gradient( to right, #D73350, #FC6F69 );">PLAY</button>
+                style="width: 100%; margin-top: 3px; background-image: linear-gradient( to right, #D73350, #FC6F69 );">PLAY</button>
         </div>
         <ng-template #noThumnail><a href="" class="">
                 <img src="../../assets/image/230x345.png" alt="">
@@ -39,10 +39,36 @@
                 </div>
             </div>
             <p class="recap" style="color: white; font-weight: 400; width: 90%;">{{movieData.overview}}</p>
+            <hr>
+            <div class="img-people-container">
+                <div class="img-people" *ngFor="let item of cast">
+                    <a href="">
+                        <img src="{{serverImage}}{{item.profile_path}}" alt=""
+                            style="border: 1px wheat solid; width: 120px; height: 120px; overflow: hidden; border-radius: 50%;">
+                        <p class="name-cast">{{item.name}}</p>
+                        <p class="character">{{item.character}}</p>
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <!-- <iframe width="373" height="210" src="https://www.youtube.com/embed/GWZClyLhdCw"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe> -->
 
             <!-- <div class="metascore">
                 8.2/10
             </div> -->
+            <h3 style="color: white">Reviews</h3>
+            <ng-container *ngFor="let item of reviews">
+                <p style="color: #919191; font-weight: bold;">By {{item.author}} <span style="color: white;">* {{item.author_details.rating}}/10</span></p>
+                <p
+                    style="color: #919191; text-overflow: ellipsis; max-height: 5.6em; line-height: 1.8em; max-width: 85%; overflow: hidden;">
+                    {{item.content}}</p>
+
+            </ng-container>
+
         </div>
+
     </div>
 </div>

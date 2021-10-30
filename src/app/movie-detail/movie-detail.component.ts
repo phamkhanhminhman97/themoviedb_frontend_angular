@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from '../services/http.service';
-import { SERVICE_CONFIG, SERVER, CONSTANT, SERVER_IMAGE_200 } from '../configs/index';
+import { SERVICE_CONFIG, SERVER, CONSTANT, SERVER_IMAGE_200, SERVER_FACE_CAST, SERVER_IMAGE_500 } from '../configs/index';
 
 @Component({
   selector: 'app-movie-detail',
@@ -27,12 +27,15 @@ export class MovieDetailComponent implements OnInit {
     revenue: '...'
   };
 
+  public cast : any[] = [];
+  public reviews : any[] = [];
   //  public movieData = []
 
   public thumbnail: string = '';
   public cover: string = '';
+  public test: string = '';
 
-  public serverImage = SERVER_IMAGE_200;
+  public serverImage = SERVER_FACE_CAST;
   private movieId = this._activatedRoute.snapshot.paramMap.get('id');
   constructor(
     private _httpService: HttpService,
@@ -56,8 +59,8 @@ export class MovieDetailComponent implements OnInit {
         if (res.code === 200) {
           this.movieData = res.data;
           console.log(this.movieData);
-          this.thumbnail = SERVER_IMAGE_200 + this.movieData.poster_path;
-          this.cover = SERVER_IMAGE_200 + res.data.backdrop_path;
+          this.thumbnail = SERVER_IMAGE_500 + this.movieData.poster_path;
+          this.cover = SERVER_IMAGE_500 + res.data.backdrop_path;
 
           this._spinner.hide();
         } else {
@@ -73,7 +76,10 @@ export class MovieDetailComponent implements OnInit {
   getReviews() {
     this._httpService.getHttp(SERVICE_CONFIG.REVIEW + '/' + this.movieId).subscribe((res) => {
       console.log('REVIEWWWW');
-      console.log(res.data);
+      this.reviews = res.data.results;
+      this.test = res.data.results[0].content;
+      console.log(this.test);
+      
 
     })
   }
@@ -85,9 +91,10 @@ export class MovieDetailComponent implements OnInit {
       res.data.crew.forEach((element: any) => {
         if (element.job == 'Director') {
           this.movieData.director_id = element.name;
-
+          this.cast = res.data.cast.slice(0,6);
         }
       });
     })
   }
+
 }
