@@ -12,24 +12,11 @@ import { SERVICE_CONFIG, SERVER, CONSTANT, SERVER_IMAGE_200, SERVER_FACE_CAST, S
 export class MovieDetailComponent implements OnInit {
 
   // Must be INIT MovieData
-  public movieData = {
-    cast: '...',
-    recap: '...',
-    year: '...',
-    title: '...',
-    time: '...',
-    director_id: '...',
-    poster_path: '',
-    release_date: '...',
-    vote_average: '...',
-    overview: '...',
-    budget: '...',
-    revenue: '...'
-  };
+  public movieData: any;
 
-  public cast : any[] = [];
-  public reviews : any[] = [];
-  //  public movieData = []
+  public cast: any[] = [];
+  public reviews: any[] = [];
+
 
   public thumbnail: string = '';
   public cover: string = '';
@@ -37,6 +24,7 @@ export class MovieDetailComponent implements OnInit {
 
   public serverImage = SERVER_FACE_CAST;
   private movieId = this._activatedRoute.snapshot.paramMap.get('id');
+
   constructor(
     private _httpService: HttpService,
     private _spinner: NgxSpinnerService,
@@ -58,7 +46,6 @@ export class MovieDetailComponent implements OnInit {
       .subscribe((res) => {
         if (res.code === 200) {
           this.movieData = res.data;
-          console.log(this.movieData);
           this.thumbnail = SERVER_IMAGE_500 + this.movieData.poster_path;
           this.cover = SERVER_IMAGE_500 + res.data.backdrop_path;
 
@@ -75,26 +62,20 @@ export class MovieDetailComponent implements OnInit {
   //api get review
   getReviews() {
     this._httpService.getHttp(SERVICE_CONFIG.REVIEW + '/' + this.movieId).subscribe((res) => {
-      console.log('REVIEWWWW');
       this.reviews = res.data.results;
       this.test = res.data.results[0].content;
-      console.log(this.test);
-      
-
     })
   }
 
   //api get credits
   getCredits() {
     this._httpService.getHttp(SERVICE_CONFIG.CREDIT + '/' + this.movieId).subscribe((res) => {
-      console.log('crewwww');
       res.data.crew.forEach((element: any) => {
         if (element.job == 'Director') {
           this.movieData.director_id = element.name;
-          this.cast = res.data.cast.slice(0,6);
+          this.cast = res.data.cast.slice(0, 6);
         }
       });
     })
   }
-
 }

@@ -7,19 +7,18 @@
     </div>
     <div class="row movie-detail">
         <div class="box-detail col-10 col-md-3 col-lg-2">
-            <a href="" class="movie-link" style="width: 100%;">
-                <img *ngIf="thumbnail  ; else noThumnail" src="{{thumbnail}}" alt="" style="width: 100%;">
+            <a href="" class="movie-link">
+                <img *ngIf="thumbnail  ; else noThumnail" src="{{thumbnail}}" alt="">
             </a>
 
-            <button class="btn btn-danger"
-                style="width: 100%; margin-top: 3px; background-image: linear-gradient( to right, #D73350, #FC6F69 );">PLAY</button>
+            <button class="btn btn-danger play-btn">PLAY</button>
         </div>
         <ng-template #noThumnail><a href="" class="">
                 <img src="../../assets/image/230x345.png" alt="">
             </a></ng-template>
         <div class="movie-info col-12 col-md-12 col-lg-9">
             <div class="title">
-                <h1>{{movieData.title}} ({{movieData.release_date | date: 'yyyy'}})</h1>
+                <h1>{{movieData.title}} ( {{movieData.release_date | date: 'yyyy'}} )</h1>
             </div>
             <hr>
             <div class="row movie-sub-info">
@@ -38,13 +37,12 @@
                     <p class="sub-info cast">{{movieData.director_id}}</p>
                 </div>
             </div>
-            <p class="recap" style="color: white; font-weight: 400; width: 90%;">{{movieData.overview}}</p>
+            <p class="recap">{{movieData.overview}}</p>
             <hr>
             <div class="img-people-container">
                 <div class="img-people" *ngFor="let item of cast">
                     <a href="">
-                        <img src="{{serverImage}}{{item.profile_path}}" alt=""
-                            style="border: 1px wheat solid; width: 120px; height: 120px; overflow: hidden; border-radius: 50%;">
+                        <img src="{{serverImage}}{{item.profile_path}}" alt="">
                         <p class="name-cast">{{item.name}}</p>
                         <p class="character">{{item.character}}</p>
                     </a>
@@ -61,9 +59,8 @@
             </div> -->
             <h3 style="color: white">Reviews</h3>
             <ng-container *ngFor="let item of reviews">
-                <p style="color: #919191; font-weight: bold;">By {{item.author}} <span style="color: white;">* {{item.author_details.rating}}/10</span></p>
-                <p
-                    style="color: #919191; text-overflow: ellipsis; max-height: 5.6em; line-height: 1.8em; max-width: 85%; overflow: hidden;">
+                <p class="author">By {{item.author}} <span style="color: white;">* {{item.author_details.rating}}/10</span></p>
+                <p class="review-content">
                     {{item.content}}</p>
 
             </ng-container>
