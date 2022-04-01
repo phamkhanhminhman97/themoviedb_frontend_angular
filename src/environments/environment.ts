@@ -2,7 +2,8 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-const SERVER = 'http://localhost:8080';
+// const SERVER = 'http://localhost:8080';
+const SERVER = 'http://172.20.80.1:8080';
 
 export const environment = {
   serverUrl: SERVER,
